@@ -4,16 +4,6 @@ import java.time.LocalDateTime;
 
 import dev.greatseo.backbone.domain.model.Email;
 import dev.greatseo.backbone.domain.model.Name;
-import java.time.LocalDateTime;
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
-import javax.persistence.Column;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -22,7 +12,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
+import javax.persistence.*;
 
 @Entity
 @Table(name = "member")
