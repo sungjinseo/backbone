@@ -19,11 +19,11 @@ public class MemberFindDao {
 
     private final MemberRepository memberRepository;
 
-//    public Member findById(final Long id) {
-//        final Optional<Member> member = memberRepository.findById(id);
-//        member.orElseThrow(() -> new MemberNotFoundException(id));
-//        return member.get();
-//    }
+    public Member findById(final Long id) {
+        final Optional<Member> member = memberRepository.findById(id);
+        member.orElseThrow(() -> new MemberNotFoundException(id));
+        return member.get();
+    }
 
     public Member findByEmail(final Email email) {
         final Optional<Member> member = memberRepository.findByEmail(email);
