@@ -1,7 +1,7 @@
-package dev.greatseo.backbone.domain.member.dao;
+package dev.greatseo.backbone.domain.member.domain.repository;
 
-import dev.greatseo.backbone.domain.member.domain.Member;
-import dev.greatseo.backbone.domain.member.domain.QMember;
+import dev.greatseo.backbone.domain.member.domain.entitiy.Member;
+import dev.greatseo.backbone.domain.member.domain.entitiy.QMember;
 import dev.greatseo.backbone.domain.model.Email;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.transaction.annotation.Transactional;

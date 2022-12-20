@@ -1,7 +1,8 @@
-package dev.greatseo.backbone.domain.member.domain;
+package dev.greatseo.backbone.domain.member.domain.entitiy;
 
 import java.time.LocalDateTime;
 
+import dev.greatseo.backbone.domain.member.domain.ReferralCode;
 import dev.greatseo.backbone.domain.model.Email;
 import dev.greatseo.backbone.domain.model.Name;
 import lombok.AccessLevel;

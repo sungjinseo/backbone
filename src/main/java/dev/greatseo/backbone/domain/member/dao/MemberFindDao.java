@@ -2,15 +2,14 @@ package dev.greatseo.backbone.domain.member.dao;
 
 import java.util.Optional;
 
-import dev.greatseo.backbone.domain.member.domain.Member;
+import dev.greatseo.backbone.domain.member.domain.entitiy.Member;
+import dev.greatseo.backbone.domain.member.domain.repository.MemberRepository;
 import dev.greatseo.backbone.domain.member.exception.EmailNotFoundException;
 import dev.greatseo.backbone.domain.member.exception.MemberNotFoundException;
 import dev.greatseo.backbone.domain.model.Email;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 @Service
 @Transactional
