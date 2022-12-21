@@ -11,6 +11,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @DataJpaTest
 @ActiveProfiles(TestProfile.TEST)
 //@AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
-@Disabled("ignore")
+@Disabled
 public class RepositoryTest {
 }

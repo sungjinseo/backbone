@@ -8,7 +8,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 @ExtendWith(MockitoExtension.class)
 @ActiveProfiles(TestProfile.TEST)
-@Disabled("pass")
+@Disabled
 public class MockTest {
 
 }

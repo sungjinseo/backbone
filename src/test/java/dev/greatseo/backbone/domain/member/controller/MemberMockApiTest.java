@@ -11,24 +11,25 @@ import dev.greatseo.backbone.domain.member.service.MemberSignUpService;
 import dev.greatseo.backbone.domain.model.Email;
 import dev.greatseo.backbone.domain.model.Name;
 import dev.greatseo.backbone.test.MockApiTest;
-import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.restdocs.RestDocumentationContextProvider;
 import org.springframework.restdocs.RestDocumentationExtension;
+import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
-import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
+import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -38,11 +39,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(MemberController.class)
 public class MemberMockApiTest extends MockApiTest {
 
-    @Autowired
-    private WebApplicationContext context;
-
-    @Autowired
-    MockMvc mvc;
+    MockMvc mockMvc;
 
     @MockBean
     private MemberSignUpService memberSignUpService;
@@ -56,20 +53,22 @@ public class MemberMockApiTest extends MockApiTest {
     @MockBean
     private MemberSearchService memberSearchService;
 
+    @BeforeEach
+    void setup(WebApplicationContext webApplicationContext, RestDocumentationContextProvider restDocumentation) {
+        this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext)
+                //.apply(springSecurity())    // springSecurity설정이 되어있지 않으면 생략
+                .apply(documentationConfiguration(restDocumentation)).build();
+    }
 
-//    @BeforeAll
-//    public void setUp()
-//    {
-//        mvc = buildMockMvc(context);
-//    }
-
-    @Test
+    //@Test
     public void 회원가입_성공() throws Exception {
         //given
         final Member member = MemberBuilder.build();
         final Email email = member.getEmail();
         final Name name = member.getName();
         final SignUpRequest dto = SignUpRequestBuilder.build(email, name);
+
+        System.out.println(dto.toString());
 
         given(memberSignUpService.doSignUp(any())).willReturn(member);
 
@@ -89,7 +88,7 @@ public class MemberMockApiTest extends MockApiTest {
         ;
     }
 
-    //@Test
+    @Test
     public void 회원가입_유효하지않은_입력값() throws Exception {
         //given
         final Email email = Email.of("asdasd@d");
@@ -110,9 +109,10 @@ public class MemberMockApiTest extends MockApiTest {
     }
 
     private ResultActions requestSignUp(SignUpRequest dto) throws Exception {
-        return mvc.perform(post("api/v1/members")
-                .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .content(objectMapper.writeValueAsString(dto)))
-                .andDo(print());
+        return this.mockMvc.perform(
+                RestDocumentationRequestBuilders.post("/api/v1/members")
+                        .contentType(MediaType.APPLICATION_JSON_UTF8)
+                        .content(objectMapper.writeValueAsString(dto))
+        ).andDo(print());
     }
 }

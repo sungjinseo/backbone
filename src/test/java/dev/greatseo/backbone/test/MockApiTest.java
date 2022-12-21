@@ -41,23 +41,10 @@ public class MockApiTest {
     @Autowired
     private WebApplicationContext context;
 
-    private MockMvc mockMvc;
+    private RestDocumentationContextProvider restDocumentation;
+
 
     protected ObjectMapper objectMapper = buildObjectMapper();
-
-    public MockMvc buildMockMvc(RestDocumentationContextProvider restDocumentation) {
-        return MockMvcBuilders.webAppContextSetup(context)
-                .apply(documentationConfiguration(restDocumentation))  // (2)
-                .build();
-    }
-
-    /*public MockMvc buildMockMvc(WebApplicationContext context) {
-        return MockMvcBuilders
-                .webAppContextSetup(context)
-                .apply(documentationConfiguration(this.restDocumentation))
-                .alwaysDo(document)
-                .build();
-    }*/
 
     protected <T> T readValue(final String path, Class<T> clazz) throws IOException {
         final InputStream json = resourceLoader.getResource(path).getInputStream();

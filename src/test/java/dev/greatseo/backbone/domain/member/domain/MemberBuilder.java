@@ -22,7 +22,7 @@ public class MemberBuilder {
         return Member.builder()
                 .email(email)
                 .name(name)
-            .referralCode(ReferralCode.generateCode())
+                .referralCode(ReferralCode.generateCode())
                 .build();
     }
 
