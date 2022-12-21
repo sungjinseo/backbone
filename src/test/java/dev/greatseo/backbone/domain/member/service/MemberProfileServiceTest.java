@@ -1,10 +1,9 @@
-package dev.greatseo.backbone.domain.member.application;
+package dev.greatseo.backbone.domain.member.service;
 
 import dev.greatseo.backbone.domain.member.dao.MemberFindDao;
 import dev.greatseo.backbone.domain.member.domain.MemberBuilder;
 import dev.greatseo.backbone.domain.member.domain.entitiy.Member;
 import dev.greatseo.backbone.domain.member.dto.MemberProfileUpdate;
-import dev.greatseo.backbone.domain.member.service.MemberProfileService;
 import dev.greatseo.backbone.test.MockTest;
 import dev.greatseo.backbone.test.setup.request.MemberProfileUpdateBuilder;
 import org.junit.jupiter.api.Test;

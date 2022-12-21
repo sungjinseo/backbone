@@ -1,4 +1,4 @@
-package dev.greatseo.backbone.domain.member.application;
+package dev.greatseo.backbone.domain.member.service;
 
 import dev.greatseo.backbone.domain.member.domain.MemberBuilder;
 import dev.greatseo.backbone.domain.member.domain.entitiy.Member;
@@ -6,7 +6,6 @@ import dev.greatseo.backbone.domain.member.domain.repository.MemberRepository;
 import dev.greatseo.backbone.domain.member.dto.SignUpRequest;
 import dev.greatseo.backbone.domain.member.dto.SignUpRequestBuilder;
 import dev.greatseo.backbone.domain.member.exception.EmailDuplicateException;
-import dev.greatseo.backbone.domain.member.service.MemberSignUpService;
 import dev.greatseo.backbone.domain.model.Email;
 import dev.greatseo.backbone.domain.model.Name;
 import dev.greatseo.backbone.test.MockTest;
