@@ -10,9 +10,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class MemberResponse {
-
     private Email email;
-
     private Name name;
 
     public MemberResponse(final Member member) {

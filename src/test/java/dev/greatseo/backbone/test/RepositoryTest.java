@@ -10,7 +10,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
 @ActiveProfiles(TestProfile.TEST)
-//@AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
 @Disabled
+//@AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
 public class RepositoryTest {
 }

@@ -8,7 +8,7 @@ import dev.greatseo.backbone.domain.member.dto.SignUpRequestBuilder;
 import dev.greatseo.backbone.domain.member.exception.EmailDuplicateException;
 import dev.greatseo.backbone.domain.model.Email;
 import dev.greatseo.backbone.domain.model.Name;
-import dev.greatseo.backbone.test.MockTest;
+import dev.greatseo.backbone.test.ServiceTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -20,7 +20,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
 
-public class MemberSignUpServiceTest extends MockTest {
+public class MemberSignUpServiceTest extends ServiceTest {
 
     @InjectMocks
     private MemberSignUpService memberSignUpService;

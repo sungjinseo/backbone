@@ -6,7 +6,7 @@ import dev.greatseo.backbone.domain.member.dto.SignUpRequest;
 import dev.greatseo.backbone.domain.member.dto.SignUpRequestBuilder;
 import dev.greatseo.backbone.domain.model.Email;
 import dev.greatseo.backbone.domain.model.Name;
-import dev.greatseo.backbone.test.MockControllerTest;
+import dev.greatseo.backbone.test.IntegrationTest;
 import net.minidev.json.JSONObject;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
@@ -20,7 +20,7 @@ import static io.restassured.RestAssured.given;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 
 
-class MemberApiDocuTest extends MockControllerTest {
+class MemberIntegrationTest extends IntegrationTest {
 
     private static final Snippet REQUEST_FIELDS = requestFields(
             fieldWithPath("email").type(JsonFieldType.OBJECT).description("이메일정보"),
@@ -48,16 +48,12 @@ class MemberApiDocuTest extends MockControllerTest {
 
     @Test
     void users_success_test() {
-
-
         final Member member = MemberBuilder.build();
         final Email email = member.getEmail();
         final Name name = member.getName();
         final SignUpRequest dto = SignUpRequestBuilder.build(email, name);
 
         String expectedEmail = "cheese10yun@gmail.com";
-        //String expectedName = "";
-        //int expectedAge = 27;
 
         JSONObject requestBody = new JSONObject();
         requestBody.put("email", email);

@@ -9,6 +9,5 @@ import org.springframework.test.context.ActiveProfiles;
 @ExtendWith(MockitoExtension.class)
 @ActiveProfiles(TestProfile.TEST)
 @Disabled
-public class MockTest {
-
+public class ServiceTest {
 }

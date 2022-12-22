@@ -10,39 +10,25 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
-import org.springframework.restdocs.RestDocumentationContextProvider;
-import org.springframework.restdocs.RestDocumentationExtension;
 import org.springframework.restdocs.mockmvc.RestDocumentationResultHandler;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
 
 import java.io.IOException;
 import java.io.InputStream;
 
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
-import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.*;
 
-@ExtendWith({RestDocumentationExtension.class, SpringExtension.class})
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = BackboneApplication.class)
 @ActiveProfiles(TestProfile.TEST)
-@Disabled("pass")
-public class MockApiTest {
+@Disabled
+public class ControllerTest {
 
     @Autowired
     protected ResourceLoader resourceLoader;
-
-    protected RestDocumentationResultHandler document = buildDocument();
-
-    @Autowired
-    private WebApplicationContext context;
-
-    private RestDocumentationContextProvider restDocumentation;
-
 
     protected ObjectMapper objectMapper = buildObjectMapper();
 

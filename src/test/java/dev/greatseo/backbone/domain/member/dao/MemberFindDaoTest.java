@@ -5,7 +5,6 @@ import dev.greatseo.backbone.domain.member.domain.entitiy.Member;
 import dev.greatseo.backbone.domain.member.domain.repository.MemberRepository;
 import dev.greatseo.backbone.domain.member.exception.EmailNotFoundException;
 import dev.greatseo.backbone.domain.member.exception.MemberNotFoundException;
-import dev.greatseo.backbone.test.MockTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -20,7 +19,7 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
 
 
-public class MemberFindDaoTest extends MockTest {
+public class MemberFindDaoTest {
 
     private Member member;
 
