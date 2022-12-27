@@ -36,6 +36,12 @@ public class Member {
     @AttributeOverride(name = "value", column = @Column(name = "referral_code", nullable = false, unique = true, updatable = false, length = 50))
     private ReferralCode referralCode;
 
+    @Column(name = "password", length = 200, nullable = false)
+    private String password;
+
+    @Column(name = "nick_name", length = 100)
+    private String nickname;
+
     @Embedded
     @AttributeOverrides({
             @AttributeOverride(name = "first", column = @Column(name = "first_name", nullable = false)),
@@ -53,10 +59,12 @@ public class Member {
     private LocalDateTime updateAt;
 
     @Builder
-    public Member(Email email, ReferralCode referralCode, Name name) {
+    public Member(Email email, ReferralCode referralCode, Name name, String nickname, String password) {
         this.email = email;
         this.referralCode = referralCode;
         this.name = name;
+        this.nickname = nickname;
+        this.password = password;
     }
 
     public void updateProfile(final Name name) {

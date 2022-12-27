@@ -2,8 +2,9 @@ package dev.greatseo.backbone.domain.member.controller;
 
 import javax.validation.Valid;
 
-import dev.greatseo.backbone.domain.member.dto.SignInDto;
-import dev.greatseo.backbone.domain.member.dto.SignUpDto;
+import dev.greatseo.backbone.domain.member.dto.SignInReqDto;
+import dev.greatseo.backbone.domain.member.dto.SignInResDto;
+import dev.greatseo.backbone.domain.member.dto.SignUpReqDto;
 import dev.greatseo.backbone.domain.member.service.SignService;
 import dev.greatseo.backbone.global.util.auth.AuthProvider;
 import lombok.RequiredArgsConstructor;
@@ -26,21 +27,21 @@ public class SignController {
      * @throws Exception
      */
     @PostMapping(value = {"/signup"})
-    public ResponseEntity<Boolean> appSignUp(@Valid @RequestBody SignUpDto signupDto) throws Exception {
+    public ResponseEntity<Boolean> appSignUp(@Valid @RequestBody SignUpReqDto signupDto) throws Exception {
 
         return ResponseEntity.ok()
-                .body(apiSignService.regMember(joinDto));
+                .body(apiSignService.signupMember(joinDto));
     }
 
     /**
      * @method 설명 : 로그인
-     * @param signinDto
+     * @param signinReqDto
      * @throws Exception
      */
     @PostMapping(value = {"/signin"})
-    public ResponseEntity<AuthenticationDto> appSignIn(@Valid @RequestBody SignInDto signinDto) throws Exception {
+    public ResponseEntity<SignInReqDto> appSignIn(@Valid @RequestBody SignInReqDto signinReqDto) throws Exception {
 
-        SignUpResponseDto authentication = apiSignService.loginMember(signinDto);
+        SignInResDto authentication = apiSignService.signinMember(signinReqDto);
 
         return ResponseEntity.ok()
                 .header("accesstoken", authProvider

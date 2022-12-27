@@ -1,6 +1,10 @@
 package dev.greatseo.backbone.domain.member.service.impl;
 
+import dev.greatseo.backbone.domain.member.domain.entitiy.Member;
 import dev.greatseo.backbone.domain.member.domain.repository.MemberRepository;
+import dev.greatseo.backbone.domain.member.dto.SignInReqDto;
+import dev.greatseo.backbone.domain.member.dto.SignInResDto;
+import dev.greatseo.backbone.domain.member.dto.SignUpReqDto;
 import dev.greatseo.backbone.domain.member.service.SignService;
 import dev.greatseo.portfolio.api.member.domain.entity.Members;
 import dev.greatseo.portfolio.api.member.domain.repository.MemberRepository;
@@ -14,6 +18,7 @@ import dev.greatseo.portfolio.exception.custom.UserNotFoundException;
 import dev.greatseo.portfolio.util.validation.Empty;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.internal.util.Members;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -27,14 +32,14 @@ public class SignServiceImpl implements SignService {
 
     private final ModelMapper modelMapper;
 
-    public Boolean regMember(JoinDto joinDto) {
+    public Boolean signupMember(SignUpReqDto signUpReqDtoDto) {
 
         // 아이디 중복체크
-        if (!Empty.validation(memberRepository.countByEmail(joinDto.getEmail())))
+        if (!Empty.validation(memberRepository.countByEmail(signUpReqDtoDto.getEmail())))
             throw new DuplicatedException("Duplicated ID");
 
         // 연락처 중복체크
-        if (!Empty.validation(memberRepository.countByMobile(joinDto.getMobile())))
+        if (!Empty.validation(memberRepository.countByMobile(signUpReqDtoDto.getMobile())))
             throw new DuplicatedException("Duplicated Mobile");
 
         // 비밀번호 암호화처리
@@ -46,13 +51,13 @@ public class SignServiceImpl implements SignService {
         return true;
     }
 
-    public AuthenticationDto loginMember(LoginDto loginDto) {
+    public SignInResDto signinMembber(SignInReqDto signInReqDto) {
 
         // dto -> entity
-        Members loginEntity = loginDto.toEntity();
+        Member loginEntity = signInReqDto.toEntity();
 
         // 회원 엔티티 객체 생성 및 조회시작
-        Members member = memberRepository.findByEmail(loginEntity.getEmail())
+        Member member = memberRepository.findByEmail(loginEntity.getEmail())
                 .orElseThrow(() -> new UserNotFoundException("User Not Found"));
 
         if (!passwordEncoder.matches(loginEntity.getPassword(), member.getPassword()))

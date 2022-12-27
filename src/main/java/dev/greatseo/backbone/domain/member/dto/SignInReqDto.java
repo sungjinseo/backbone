@@ -1,16 +1,15 @@
 package dev.greatseo.backbone.domain.member.dto;
 
-import dev.greatseo.portfolio.api.member.domain.entity.Members;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.modelmapper.internal.util.Members;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-@Setter
 @Getter
 @NoArgsConstructor
-public class SignInDto {
+public class SignInReqDto {
 
 	@NotBlank(message = "'email' is a required input value")
 	@Email(message = "It is not in email format")
