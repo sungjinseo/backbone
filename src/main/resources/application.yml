@@ -1,4 +1,6 @@
 spring:
+  pid:
+    file: springboot-app.pid
   profiles:
     active: local
 
